@@ -1,0 +1,17 @@
+{
+  "name": "oncall-agent-web",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "preview": "vite preview --host 0.0.0.0 --port 4173"
+  },
+  "devDependencies": {
+    "vite": "^7.2.6"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.7",
+    "marked": "^18.0.4"
+  }
+}

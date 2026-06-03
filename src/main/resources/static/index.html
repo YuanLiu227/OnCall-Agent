@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OnCall Agent</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="会话导航">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">OA</div>
+          <div>
+            <p class="brand-title">OnCall Agent</p>
+            <p class="brand-subtitle">智能运维助手</p>
+          </div>
+        </div>
+
+        <button class="new-chat" id="newChatButton" type="button">
+          <span class="plus" aria-hidden="true"></span>
+          新对话
+        </button>
+
+        <div class="session-list" id="sessionList" aria-label="历史会话">
+          <button class="session-item is-active" type="button">
+            <span class="session-dot" aria-hidden="true"></span>
+            快速对话
+          </button>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="status-pill" id="apiStatus">
+            <span class="status-dot" aria-hidden="true"></span>
+            后端端口 9910
+          </div>
+        </div>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <h1>快速对话</h1>
+            <p>
+              当前接口：
+              <code id="endpointText">/api/chat</code>
+            </p>
+          </div>
+
+          <div class="header-actions">
+            <button class="ops-button" id="aiOpsButton" type="button">自动运维</button>
+            <button class="ghost-button" id="clearButton" type="button">清空</button>
+          </div>
+        </header>
+
+        <section class="messages" id="messages" aria-live="polite" aria-label="对话消息">
+          <article class="message assistant-message">
+            <div class="avatar" aria-hidden="true">A</div>
+            <div class="bubble markdown-body">
+              <p>你好，我是 OnCall Agent。可以直接问我运维排查、内部知识库或告警分析相关问题。</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="composer-wrap" aria-label="发送消息">
+          <div class="composer-row">
+            <form class="composer" id="chatForm">
+              <button class="upload-button" id="uploadButton" type="button" aria-label="上传 Markdown 到知识库">
+                <span class="plus" aria-hidden="true"></span>
+              </button>
+              <input class="file-input" id="knowledgeFileInput" type="file" accept=".md,text/markdown" />
+              <label class="sr-only" for="questionInput">输入问题</label>
+              <textarea
+                id="questionInput"
+                name="question"
+                rows="1"
+                placeholder="向 OnCall Agent 发送消息..."
+                autocomplete="off"
+                required
+              ></textarea>
+              <button class="send-button" id="sendButton" type="submit" aria-label="发送消息">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 5l7 7m0 0l-7 7m7-7H5" />
+                </svg>
+              </button>
+            </form>
+
+            <div class="mode-toggle composer-mode" aria-label="对话模式">
+              <button class="mode-option is-active" type="button" data-mode="standard" aria-pressed="true">
+                非流式对话
+              </button>
+              <button class="mode-option" type="button" data-mode="stream" aria-pressed="false">
+                流式对话
+              </button>
+            </div>
+          </div>
+          <p class="composer-hint">Enter 发送，Shift + Enter 换行</p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

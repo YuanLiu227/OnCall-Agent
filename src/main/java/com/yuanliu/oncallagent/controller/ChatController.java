@@ -335,7 +335,9 @@ public class ChatController {
                             .data(SseMessage.content("⚠️ 多 Agent 流程已完成，但未能生成最终报告。"),MediaType.APPLICATION_JSON));
                 }
 
-                emitter.send(SseEmitter.event().name("message").data(SseMessage.done()),MediaType.APPLICATION_JSON);
+                emitter.send(SseEmitter.event()
+                        .name("message")
+                        .data(SseMessage.done(),MediaType.APPLICATION_JSON));
                 emitter.complete();
                 log.info("AI Ops 多 Agent 编排完成");
             }catch (Exception e){

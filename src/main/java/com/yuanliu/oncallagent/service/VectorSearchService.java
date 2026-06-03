@@ -6,6 +6,8 @@ import io.milvus.client.MilvusServiceClient;
 import io.milvus.grpc.SearchResults;
 import io.milvus.param.MetricType;
 import io.milvus.param.R;
+import io.milvus.param.RpcStatus;
+import io.milvus.param.collection.LoadCollectionParam;
 import io.milvus.param.dml.SearchParam;
 import io.milvus.response.SearchResultsWrapper;
 import lombok.Getter;
@@ -57,6 +59,14 @@ public class VectorSearchService {
                     .withParams("{\"nprobe\":10}")
                     .build();
             //3.执行向量搜索
+            R<RpcStatus> loadResponse = milvusClient.loadCollection(
+                    LoadCollectionParam.newBuilder()
+                            .withCollectionName(MilvusConstants.MILVUS_COLLECTION_NAME)
+                            .build()
+            );
+            if(loadResponse.getStatus()!=0 && loadResponse.getStatus()!=65535){
+                throw new RuntimeException("加载Collection失败:"+loadResponse.getMessage());
+            }
             R<SearchResults> searchResponse = milvusClient.search(searchParam);
 
             if(searchResponse.getStatus()!=0){

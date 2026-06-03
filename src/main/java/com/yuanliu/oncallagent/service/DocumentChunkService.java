@@ -63,9 +63,10 @@ public class DocumentChunkService {
                     sections.add(new Section(currentTitle, sectionContent, lastEnd));
                 }
             }
+
+            currentTitle = matcher.group(2).trim();
+            lastEnd = matcher.start();
         }
-        currentTitle = matcher.group(2).trim();
-        lastEnd = matcher.start();
 
         if(lastEnd < content.length()){
             String sectionContent = content.substring(lastEnd).trim();

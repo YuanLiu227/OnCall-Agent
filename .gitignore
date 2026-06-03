@@ -2,6 +2,9 @@ target/
 .idea/
 META-INF/
 uploads/
+node_modules/
+.env
+*.env
+src/main/resources/.env
 *.iml
 *.log
-
