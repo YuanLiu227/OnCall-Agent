@@ -1,0 +1,7 @@
+target/
+.idea/
+META-INF/
+uploads/
+*.iml
+*.log
+
